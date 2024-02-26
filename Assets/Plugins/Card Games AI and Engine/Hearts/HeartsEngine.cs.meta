@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 71ff8563e47cb744dbe1e8d2371978bc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261114
+  packageName: 'AI and Engine pack: Card Games'
+  packageVersion: 1.1
+  assetPath: Assets/Plugins/Card Games AI and Engine/Hearts/HeartsEngine.cs
+  uploadId: 614018

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4df4f539d21cd9f49af44502fed0b914
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261114
+  packageName: 'AI and Engine pack: Card Games'
+  packageVersion: 1.1
+  assetPath: Assets/Plugins/Card Games AI and Engine/GOPS/GOPSDemo.cs
+  uploadId: 614018

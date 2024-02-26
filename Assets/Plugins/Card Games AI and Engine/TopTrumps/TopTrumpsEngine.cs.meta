@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b9fd6e4b2cab5714caa76b53a1156c90
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261114
+  packageName: 'AI and Engine pack: Card Games'
+  packageVersion: 1.1
+  assetPath: Assets/Plugins/Card Games AI and Engine/TopTrumps/TopTrumpsEngine.cs
+  uploadId: 614018

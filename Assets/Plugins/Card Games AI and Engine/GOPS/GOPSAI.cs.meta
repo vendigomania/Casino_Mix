@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 72fba203bb0cf8c47a76dfe7531f41a9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261114
+  packageName: 'AI and Engine pack: Card Games'
+  packageVersion: 1.1
+  assetPath: Assets/Plugins/Card Games AI and Engine/GOPS/GOPSAI.cs
+  uploadId: 614018
