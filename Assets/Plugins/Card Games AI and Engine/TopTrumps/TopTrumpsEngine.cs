@@ -494,13 +494,13 @@ namespace CGAIE
             tieBreakerParticipants.Clear();
 
             //checking for end-of-game and finding out tie-breaker participants if there was a tie
-            int playersœnGame = 0;
+            int playersGame = 0;
             List<int> tmpTieBreakerParticipants = new List<int>();
             for (int i = 0; i < hands.Length; ++i)
             {
                 if (hands[i].Count > 0 || unShuffledHands[i].Count > 0)
                 {
-                    playersœnGame++;
+                    playersGame++;
 
                     if (!PrivateTieBreakers || highestValuePlayers.Contains(i))
                         tmpTieBreakerParticipants.Add(i+1);
@@ -508,7 +508,7 @@ namespace CGAIE
             }
 
 
-            if (playersœnGame > 1)
+            if (playersGame > 1)
             {
                 //the winner is the new player starting the round. If the round was a tie, the previous winner continues
                 //unless the previous winner doesn't have any cards
