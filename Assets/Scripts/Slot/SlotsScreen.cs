@@ -14,6 +14,8 @@ public class SlotsScreen : MonoBehaviour
     [SerializeField] private Text totalBetLable;
     [SerializeField] private Text winLable;
 
+    [SerializeField] private GameObject bigWinScreen;
+
     int bet = 10;
     int totalBet;
     int win;
@@ -60,7 +62,11 @@ public class SlotsScreen : MonoBehaviour
         UpdateUI();
 
         canvasGroup.interactable = true;
-        SoundManager.Instance.PlayWin();
+        if(prizeMultiplier > 0) SoundManager.Instance.PlayWin();
+        if(prizeMultiplier > 3)
+        {
+            bigWinScreen.SetActive(true);
+        }
     }
 
     private void UpdateUI()

@@ -14,6 +14,7 @@ namespace CGAIE
     /// </summary>
     public class SevensDemo : ICardGameDemo
     {
+        public static System.Action<bool> OnFinish;
         public SevensEngine.PlayerType[] sevensSeats = new SevensEngine.PlayerType[4] { SevensEngine.PlayerType.local, SevensEngine.PlayerType.AI, SevensEngine.PlayerType.AI, SevensEngine.PlayerType.AI };
 
         /// <summary>
@@ -177,6 +178,7 @@ namespace CGAIE
                                     break;
                                 }
                             }
+                            OnFinish?.Invoke(winner == 1);
                             gameStateText.GetComponent<Text>().text = "The game has ended. Winner: Player " + winner;
                             break;
                     }
