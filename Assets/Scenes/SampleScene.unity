@@ -390,7 +390,7 @@ MonoBehaviour:
   betLable: {fileID: 756962108}
   totalBetLable: {fileID: 2140391680}
   winLable: {fileID: 1667973628}
-  bigWinScreen: {fileID: 0}
+  bigWinScreen: {fileID: 136528229}
 --- !u!225 &71936168
 CanvasGroup:
   m_ObjectHideFlags: 0
