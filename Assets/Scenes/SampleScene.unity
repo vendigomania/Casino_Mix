@@ -10077,7 +10077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece08b046966f6947be9721d6990072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneSignal: {fileID: 0}
+  oneSignal: {fileID: 1518816394}
   statusText: {fileID: 1858821615}
   game: {fileID: 2078294582}
   startLink: https://morkovfree.art/MQ4W8tZw
