@@ -11,7 +11,11 @@ public class RouletteScreen : MonoBehaviour
 
     [SerializeField] private RectTransform wheelTransform;
     [SerializeField] private Text[] roulettePrizLables;
-    [SerializeField] private int[] prizesValues;
+    [SerializeField] private float[] prizesValues;
+
+    [SerializeField] private Text betLable;
+    [SerializeField] private Text totalBetLable;
+    [SerializeField] private Text winLable;
 
     [SerializeField] private GameObject resultScreen;
     [SerializeField] private GameObject winTitle;
@@ -21,16 +25,20 @@ public class RouletteScreen : MonoBehaviour
     float zVelocity;
     int mode = 0;
 
+    int bet = 10;
+    int totalBet;
+    int win;
+
     private void Start()
     {
-        for(var i = 0; i < prizesValues.Length; i++)
-            roulettePrizLables[i].text = prizesValues[i].ToString();
+        //for(var i = 0; i < prizesValues.Length; i++) roulettePrizLables[i].text = prizesValues[i].ToString();
     }
 
     private void OnEnable()
     {
         coinsText.text = CasinoMixGame.Coins.ToString();
         wheelTransform.rotation = Quaternion.identity;
+        UpdateUI();
         mode = 0;
     }
 
@@ -52,7 +60,7 @@ public class RouletteScreen : MonoBehaviour
 
                     var resultId = Mathf.FloorToInt(360f - wheelTransform.rotation.eulerAngles.z - 22.5f) / 45;
 
-                    CasinoMixGame.Coins += prizesValues[resultId];
+                    CasinoMixGame.Coins += Mathf.RoundToInt(bet * prizesValues[resultId]);
                     coinsText.text = CasinoMixGame.Coins.ToString();
 
                     resultScreen.SetActive(true);
@@ -73,6 +81,15 @@ public class RouletteScreen : MonoBehaviour
         }
     }
 
+    public void ChangeBet(int addValue)
+    {
+        bet = Mathf.Clamp(bet + addValue, 10, CasinoMixGame.Coins);
+
+        UpdateUI();
+
+        SoundManager.Instance.PlayClick();
+    }
+
     public void Spin()
     {
         mode = 1;
@@ -87,6 +104,8 @@ public class RouletteScreen : MonoBehaviour
 
         canvasGroup.interactable = false;
         mode = 2;
+        CasinoMixGame.Coins -= bet;
+        UpdateUI();
 
         SoundManager.Instance.PlayClick();
     }
@@ -96,5 +115,13 @@ public class RouletteScreen : MonoBehaviour
         resultScreen.SetActive(false);
 
         SoundManager.Instance.PlayClick();
+    }
+
+    private void UpdateUI()
+    {
+        betLable.text = bet.ToString();
+        totalBetLable.text = totalBet.ToString();
+        winLable.text = win.ToString();
+        coinsText.text = CasinoMixGame.Coins.ToString();
     }
 }
