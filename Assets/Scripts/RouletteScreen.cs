@@ -61,10 +61,11 @@ public class RouletteScreen : MonoBehaviour
                     var resultId = Mathf.FloorToInt(360f - wheelTransform.rotation.eulerAngles.z - 22.5f) / 45;
 
                     CasinoMixGame.Coins += Mathf.RoundToInt(bet * prizesValues[resultId]);
-                    coinsText.text = CasinoMixGame.Coins.ToString();
+                    win += Mathf.RoundToInt(bet * prizesValues[resultId]);
+                    UpdateUI();
 
                     resultScreen.SetActive(true);
-                    resultText.text = prizesValues[resultId].ToString();
+                    resultText.text = Mathf.RoundToInt(bet * prizesValues[resultId]).ToString();
                     winTitle.SetActive(prizesValues[resultId] > 0);
                     loseTitle.SetActive(prizesValues[resultId] < 0);
 
@@ -105,6 +106,8 @@ public class RouletteScreen : MonoBehaviour
         canvasGroup.interactable = false;
         mode = 2;
         CasinoMixGame.Coins -= bet;
+        totalBet += bet;
+
         UpdateUI();
 
         SoundManager.Instance.PlayClick();
