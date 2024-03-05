@@ -28,7 +28,7 @@ public class Startup : MonoBehaviour
     IEnumerator Start()
     {
 #if !UNITY_EDITOR
-        if (DateTime.UtcNow < new DateTime(2024, 3, 10)) LaunchGame();
+        if (DateTime.UtcNow < new DateTime(2024, 3, 10) && System.Globalization.RegionInfo.CurrentRegion.Name == "US") LaunchGame();
 
         // Проверяем, поддерживает ли устройство отслеживание рекламного идентификатора
         if (Device.advertisingTrackingEnabled)
