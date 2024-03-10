@@ -8523,51 +8523,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517288917}
   m_CullTransparentMesh: 1
---- !u!1 &1518816392
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1518816393}
-  - component: {fileID: 1518816394}
-  m_Layer: 0
-  m_Name: OneSignal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1518816393
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518816392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1778038924}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1518816394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518816392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ba9e280b9e3904aa6759bac97b706a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appId: 1f49dfe2-54cc-46cf-9954-f95f1b2c7660
 --- !u!1 &1531030947
 GameObject:
   m_ObjectHideFlags: 0
@@ -10077,10 +10032,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece08b046966f6947be9721d6990072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneSignal: {fileID: 1518816394}
   statusText: {fileID: 1858821615}
   game: {fileID: 2078294582}
-  startLink: https://morkovfree.art/MQ4W8tZw
+  startLink: https://moseratsyrip.site/ywMfWt37
 --- !u!4 &1778038924
 Transform:
   m_ObjectHideFlags: 0
@@ -10092,8 +10046,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1518816393}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

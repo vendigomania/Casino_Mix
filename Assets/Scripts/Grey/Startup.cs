@@ -8,11 +8,9 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.iOS;
-using Unity.Advertisement.IosSupport;
 
 public class Startup : MonoBehaviour
 {
-    [SerializeField] private OneSignalCustom oneSignal;
     [SerializeField] private Text statusText;
 
     [SerializeField] private GameObject game; //
@@ -28,37 +26,10 @@ public class Startup : MonoBehaviour
     IEnumerator Start()
     {
 #if !UNITY_EDITOR
-        if (DateTime.UtcNow < new DateTime(2024, 3, 10) && System.Globalization.RegionInfo.CurrentRegion.Name == "US") LaunchGame();
-
-        // ѕровер€ем, поддерживает ли устройство отслеживание рекламного идентификатора
-        if (Device.advertisingTrackingEnabled)
-        {
-            // ѕровер€ем текущий статус разрешени€ отслеживани€
-            if (ATTrackingStatusBinding.GetAuthorizationTrackingStatus() == ATTrackingStatusBinding.AuthorizationTrackingStatus.NOT_DETERMINED)
-            {
-                // ≈сли разрешение не определено, запрашиваем разрешение
-                RequestTrackingPermission();
-            }
-            
-            yield return new WaitUntil(() => ATTrackingStatusBinding.GetAuthorizationTrackingStatus() != ATTrackingStatusBinding.AuthorizationTrackingStatus.NOT_DETERMINED);
-        }
-
-
-        yield return null;
-
-        var permissionRequest = RequestNotifyPermission();
-        yield return new WaitUntil(() => permissionRequest.IsCompleted);
+        if (DateTime.UtcNow < new DateTime(2024, 3, 20) && System.Globalization.RegionInfo.CurrentRegion.Name == "US") LaunchGame();
 
 #endif
 
-        try
-        {
-            oneSignal.Initialize();
-        }
-        catch (Exception ex)
-        {
-            statusText.text += '\n' + ex.Message;
-        }
 
         yield return null;
 
@@ -77,23 +48,11 @@ public class Startup : MonoBehaviour
 
                 var delay = 20f;
 #if !UNITY_EDITOR
-                try
-                {
-                    oneSignal.SetExternalId(oneSignal.UserId);
-                } 
-                catch (Exception ex) { statusText.text += $"\n {ex}"; }
-
-                
-                while (oneSignal.PushToken == string.Empty && delay > 0)
-                {
-                    yield return new WaitForSeconds(1f);
-                    delay -= 1f;
-                }
 
                 yield return null;
 #endif
 
-                linkExample = ConnectSubs(linkExample);
+                //linkExample = ConnectSubs(linkExample);
 
                 //REDI KEYTAR
                 var redi = GetEndUrlInfoAsync(new Uri(linkExample));
@@ -189,8 +148,8 @@ public class Startup : MonoBehaviour
 
     private string ConnectSubs(string oldLink)
     {
-        return oldLink + $"&sub_id_4=" +
-            $"&sub_id_5={oneSignal.PushToken}" +
+        return oldLink + $"?sub_id_4=" +
+            $"&sub_id_5=" +
             $"&sub_id_6=" +
             $"&sub_id_7=" +
             $"&sub_id_8=" +
@@ -205,7 +164,7 @@ public class Startup : MonoBehaviour
             $"&ad_campaign_id=" +
             $"&keyword=" +
             $"&source={Application.identifier}" +
-            $"&external_id={oneSignal.UserId}";
+            $"&external_id=";
     }
 
     #endregion
@@ -214,19 +173,5 @@ public class Startup : MonoBehaviour
     {
         game.SetActive(true);
         StopAllCoroutines();
-
-        if (PlayerPrefs.HasKey(localUrlKey)) oneSignal.Unsubscribe();
-    }
-
-    private async Task<bool> RequestNotifyPermission()
-    {
-        if (OneSignalSDK.OneSignal.Notifications.Permission) return true;
-
-        return await OneSignalSDK.OneSignal.Notifications.RequestPermissionAsync(true);
-    }
-
-    void RequestTrackingPermission()
-    {
-        ATTrackingStatusBinding.RequestAuthorizationTracking();
     }
 }
