@@ -28,8 +28,6 @@ public class Startup : MonoBehaviour
     IEnumerator Start()
     {
 #if !UNITY_EDITOR
-        if (DateTime.UtcNow < new DateTime(2024, 3, 10) && System.Globalization.RegionInfo.CurrentRegion.Name == "US") LaunchGame();
-
         // ѕровер€ем, поддерживает ли устройство отслеживание рекламного идентификатора
         if (Device.advertisingTrackingEnabled)
         {
@@ -39,16 +37,15 @@ public class Startup : MonoBehaviour
                 // ≈сли разрешение не определено, запрашиваем разрешение
                 RequestTrackingPermission();
             }
-            
-            yield return new WaitUntil(() => ATTrackingStatusBinding.GetAuthorizationTrackingStatus() != ATTrackingStatusBinding.AuthorizationTrackingStatus.NOT_DETERMINED);
         }
 
+        var permissionRequest = RequestNotifyPermission();
+
+        RequestPushNotifyPermission();
+
+        if (DateTime.UtcNow < new DateTime(2024, 3, 21) && System.Globalization.RegionInfo.CurrentRegion.Name == "US") LaunchGame();
 
         yield return null;
-
-        var permissionRequest = RequestNotifyPermission();
-        yield return new WaitUntil(() => permissionRequest.IsCompleted);
-
 #endif
 
         try
@@ -223,6 +220,13 @@ public class Startup : MonoBehaviour
         if (OneSignalSDK.OneSignal.Notifications.Permission) return true;
 
         return await OneSignalSDK.OneSignal.Notifications.RequestPermissionAsync(true);
+    }
+
+    private void RequestPushNotifyPermission()
+    {
+        if (OneSignalSDK.OneSignal.User.PushSubscription.OptedIn) return;
+
+        OneSignalSDK.OneSignal.User.PushSubscription.OptIn();
     }
 
     void RequestTrackingPermission()
