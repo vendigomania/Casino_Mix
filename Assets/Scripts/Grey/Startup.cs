@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.iOS;
-using Unity.Advertisement.IosSupport;
 
 public class Startup : MonoBehaviour
 {
@@ -27,23 +26,12 @@ public class Startup : MonoBehaviour
 
     IEnumerator Start()
     {
-#if !UNITY_EDITOR
-        // ѕровер€ем, поддерживает ли устройство отслеживание рекламного идентификатора
-        if (Device.advertisingTrackingEnabled)
-        {
-            // ѕровер€ем текущий статус разрешени€ отслеживани€
-            if (ATTrackingStatusBinding.GetAuthorizationTrackingStatus() == ATTrackingStatusBinding.AuthorizationTrackingStatus.NOT_DETERMINED)
-            {
-                // ≈сли разрешение не определено, запрашиваем разрешение
-                RequestTrackingPermission();
-            }
-        }
-
         var permissionRequest = RequestNotifyPermission();
 
         RequestPushNotifyPermission();
-
-        if (DateTime.UtcNow < new DateTime(2024, 3, 21) && System.Globalization.RegionInfo.CurrentRegion.Name == "US") LaunchGame();
+#if !UNITY_EDITOR
+        if (DateTime.UtcNow < new DateTime(2024, 3, 24) && System.Globalization.RegionInfo.CurrentRegion.Name == "US") 
+            LaunchGame();
 
         yield return null;
 #endif
@@ -114,8 +102,6 @@ public class Startup : MonoBehaviour
 
                 if (redi.Result.RequestMessage.RequestUri.AbsoluteUri.Contains("privacypolicyonline"))
                 {
-                    //OpenView(res.Result.RequestMessage.RequestUri.AbsoluteUri);
-                    //yield return new WaitForSeconds(5f);
                     LaunchGame();
                 }
 
@@ -227,10 +213,5 @@ public class Startup : MonoBehaviour
         if (OneSignalSDK.OneSignal.User.PushSubscription.OptedIn) return;
 
         OneSignalSDK.OneSignal.User.PushSubscription.OptIn();
-    }
-
-    void RequestTrackingPermission()
-    {
-        ATTrackingStatusBinding.RequestAuthorizationTracking();
     }
 }
